@@ -1180,7 +1180,7 @@ _.extend(SingleSelleckt.prototype, {
         this._observeMutations(this.$originalSelectEl[0]);
     },
 
-    addItem: function(item){
+    addItem: function(item, options){
         //stop observing mutations, else we'll get into a loop
         this._stopObservingMutations();
 
@@ -1189,7 +1189,7 @@ _.extend(SingleSelleckt.prototype, {
         this.items.push(item);
 
         if(item.isSelected){
-            this.selectItem(item);
+            this.selectItem(item, options);
         }
 
         //start observing mutations again

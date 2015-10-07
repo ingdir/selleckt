@@ -508,6 +508,17 @@ function singleSellecktSpecs(SingleSelleckt, templateUtils, $, _){
 
                         expect(selleckt.$sellecktEl.find('.'+selleckt.selectedTextClass).text()).toEqual(item.label);
                     });
+
+                    it('respects the silent option and does not trigger the events', function(){
+                        var spy = sandbox.spy();
+
+                        selleckt.bind('itemSelected', spy);
+                        selleckt.$originalSelectEl.on('change', spy);
+
+                        selleckt.addItem(item, {silent: true});
+
+                        expect(spy.called).toBeFalsy();
+                    });
                 });
             });
 
